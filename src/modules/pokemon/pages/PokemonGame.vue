@@ -6,6 +6,7 @@
 
   <section v-else class="flex flex-col justify-center items-center w-screen h-screen">
     <h1 class="mt-5">Quien este Pokemon</h1>
+    <h3>{{ randomPokemon }}</h3>
     <!-- Pokemon Picture -->
     <PokemonPicture />
     <!-- Pokemon Options -->
@@ -18,5 +19,5 @@ import PokemonOptions from '../components/PokemonOptions.vue'
 import PokemonPicture from '../components/PokemonPicture.vue'
 import { usePokemonGame } from '../composables/usePokemmonGame'
 
-const { gameStatus, isLoading } = usePokemonGame()
+const { randomPokemon, isLoading } = usePokemonGame()
 </script>
