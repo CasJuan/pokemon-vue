@@ -37,4 +37,28 @@ describe('<pokemonPicture/>', () => {
     expect(wrapper.emitted().selectedOption[1]).toEqual([2])
     expect(wrapper.emitted().selectedOption[2]).toEqual([3])
   })
+  test('shoul disabled buttons when blockSelection prop is true', () => {
+    const wrapper = mount(PokemonOptions, {
+      props: { options, blockSelection: false, correctAnswer: 1 },
+    })
+    const buttons = wrapper.findAll('button')
+    buttons.forEach((button) => {
+      const atributes = Object.keys(button.attributes())
+      expect(atributes).toContain('disabled')
+    })
+  })
+  test('should apply correct styling to buttons based on correct/incorrect', () => {
+    const correctAnswer = 2
+    const wrapper = mount(PokemonOptions, {
+      props: { options, blockSelection: false, correctAnswer },
+    })
+    const buttons = wrapper.findAll('button')
+    buttons.forEach((button, index) => {
+      if (options[index].id === correctAnswer) {
+        expect(button.classes()).toContain('correct')
+      } else {
+        expect(button.classes()).toContain('incorrect')
+      }
+    })
+  })
 })
